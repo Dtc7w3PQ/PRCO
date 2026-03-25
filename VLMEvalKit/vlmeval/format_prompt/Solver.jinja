@@ -1,0 +1,8 @@
+Use the caption as the PRIMARY and DEFAULT input and solve directly from it.
+
+Only check the image when the caption does not provide enough information to complete the task.
+
+### The detailed caption of the provided image: <caption>
+### Question: {{ content | trim }}
+
+Now perform your reasoning inside <think>...</think>, then output the final answer in \boxed{}.

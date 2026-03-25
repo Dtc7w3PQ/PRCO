@@ -1,0 +1,75 @@
+{
+  "model": {
+    "seeing_pair_qwen3_vllm045": {
+      "class": "Qwen3VLObserverSolver",
+      "observer": {
+        "model_path": "<PATH_TO_PRCO_8B_MODEL>",
+        "use_custom_prompt": false,
+        "use_vllm": true,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "top_k": 0,
+        "max_new_tokens": 1024,
+        "repetition_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      },
+      "solver": {
+        "model_path": "<PATH_TO_PRCO_8B_MODEL>",
+        "use_custom_prompt": false,
+        "use_vllm": true,
+        "temperature": 0.0,
+        "top_p": 1.0,
+        "top_k": 0,
+        "max_new_tokens": 2048,
+        "repetition_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      },
+      "observer_template_path": "vlmeval/format_prompt/Observer.jinja",
+      "solver_template_path": "vlmeval/format_prompt/Solver.jinja"
+    }
+  },
+  "data": {
+    "MathVerse_MINI": {
+      "class": "MathVerse",
+      "dataset": "MathVerse_MINI"
+    },
+    "MathVerse_MINI_Vision_Only": {
+      "class": "MathVerse",
+      "dataset": "MathVerse_MINI_Vision_Only"
+    },
+    "MathVista_MINI": {
+      "class": "MathVista",
+      "dataset": "MathVista_MINI"
+    },
+    "MathVision": {
+      "class": "MathVision",
+      "dataset": "MathVision"
+    },
+    "MathVision_MINI": {
+      "class": "MathVision",
+      "dataset": "MathVision_MINI"
+    },
+    "WeMath": {
+      "class": "WeMath",
+      "dataset": "WeMath"
+    },
+    "LogicVista": {
+      "class": "LogicVista",
+      "dataset": "LogicVista"
+    },
+    "DynaMath": {
+      "class": "Dynamath",
+      "dataset": "DynaMath"
+    },
+    "MMMU_Pro_V": {
+      "class": "MMMUProDataset",
+      "dataset": "MMMU_Pro_V"
+    },
+    "MMStar": {
+      "class": "ImageMCQDataset",
+      "dataset": "MMStar"
+    }
+  }
+}
