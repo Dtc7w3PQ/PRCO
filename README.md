@@ -8,7 +8,7 @@
 **Official implementation of _Seeing with You: Perception-Reasoning Co-evolution for Multimodal Reasoning_**
 
 
-[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/) [![Hugging Face Collection](https://img.shields.io/badge/Model_Checkpoints-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/miaozq/prco) [![GitHub Stars](https://img.shields.io/github/stars/Dtc7w3PQ/PRCO?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=000000)](https://github.com/Dtc7w3PQ/PRCO)
+[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2603.28618) [![Hugging Face Collection](https://img.shields.io/badge/Model_Checkpoints-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/miaozq/prco) [![GitHub Stars](https://img.shields.io/github/stars/Dtc7w3PQ/PRCO?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=000000)](https://github.com/Dtc7w3PQ/PRCO)
 
 </div>
 
@@ -40,7 +40,7 @@ PRCO is a dual-role reinforcement learning with verifiable rewards (RLVR) framew
 
 - [x] Release PRCO checkpoints (3B / 7B / 8B)
 - [x] Release evaluation code
-- [ ] Release paper.
+- [x] Release paper.
 - [ ] Release training code
 
 ---
