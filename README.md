@@ -172,10 +172,10 @@ Coming soon...
 If you find this project helpful, please cite our paper:
 
 ```bibtex
-@article{Coming soon,
-  title={Seeing with You: Perception-Reasoning Co-evolution for Multimodal Reasoning},
-  author={AUTHOR_LIST},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+@article{miao2026seeing,
+  title={Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning},
+  author={Miao, Ziqi and Jia, Haonan and Li, Lijun and Qian, Chen and Xiong, Yuan and Yan, Wenting and Shao, Jing},
+  journal={arXiv preprint arXiv:2603.28618},
   year={2026}
 }
 ```
