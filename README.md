@@ -35,6 +35,8 @@ PRCO is a dual-role reinforcement learning with verifiable rewards (RLVR) framew
 ## 🚀 News
 
 - **[2026/03/25]** We've released the  model checkpoints, and evaluation code for PRCO.
+- [2026/10/13] PRCO has been accepted **to EMNLP**, and the code will be released within one month.
+
 ---
 ## TODO List
 
