@@ -8,7 +8,7 @@
 **Official implementation of _Seeing with You: Perception-Reasoning Co-evolution for Multimodal Reasoning_**
 
 
-[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2603.28618) [![Hugging Face Collection](https://img.shields.io/badge/Model_Checkpoints-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/miaozq/prco) [![GitHub Stars](https://img.shields.io/github/stars/Dtc7w3PQ/PRCO?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=000000)](https://github.com/Dtc7w3PQ/PRCO)
+[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/pdf/2603.28618) [![Hugging Face Collection](https://img.shields.io/badge/Model_Checkpoints-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/miaozq/prco) [![GitHub Stars](https://img.shields.io/github/stars/Dtc7w3PQ/PRCO?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=000000)](https://github.com/Dtc7w3PQ/PRCO)
 
 </div>
 
@@ -34,12 +34,16 @@ PRCO is a dual-role reinforcement learning with verifiable rewards (RLVR) framew
 
 ## 🚀 News
 
+- **[2026/10/13]** PRCO has been accepted to **EMNLP**.
 - **[2026/03/30]** The [PRCO paper](https://arxiv.org/abs/2603.28618) is available on arXiv.
+- **[2026/03/25]** We've released the model checkpoints and evaluation code for PRCO.
+
 ---
 ## Release Status
 
 - [x] Release PRCO checkpoints (3B / 7B / 8B)
 - [x] Release evaluation code
+- [x] Release paper
 - [x] Release PRCO-7B training code ([training guide](training/README.md))
 
 ---
@@ -166,7 +170,7 @@ If you find this project helpful, please cite our paper:
 
 ```bibtex
 @article{miao2026seeing,
-  title={Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning},
+  title={Seeing with you: Perception-reasoning coevolution for multimodal reasoning},
   author={Miao, Ziqi and Jia, Haonan and Li, Lijun and Qian, Chen and Xiong, Yuan and Yan, Wenting and Shao, Jing},
   journal={arXiv preprint arXiv:2603.28618},
   year={2026}
