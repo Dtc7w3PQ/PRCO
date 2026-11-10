@@ -73,7 +73,6 @@ class VILA(BaseModel):
 
     def use_custom_prompt(self, dataset):
         assert dataset is not None
-        # TODO see if custom prompt needed
         return False
 
     def generate_inner(self, message, dataset=None):
@@ -212,8 +211,6 @@ class NVILA(BaseModel):
                 raise Exception(f"vila-infer command failed: {result.stderr}")
 
             # Process the plain text output to filter log messages
-            # TODO: This is a temporary workaround. A more elegant solution is needed
-            # to robustly filter out log messages from the model output.
             return self._extract_model_response(result.stdout)
 
         finally:

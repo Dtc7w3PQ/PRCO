@@ -421,7 +421,6 @@ class VisionTransformer(nn.Module):
         # deepspeed.zero.register_external_parameter(self, self.pos_embed)
         # deepspeed.zero.register_external_parameter(self, self.patch_embed.proj.weight)
         # deepspeed.zero.register_external_parameter(self, self.patch_embed.proj.bias)
-        # print(self.patch_embed.state_dict().keys())
 
 
         self.pos_drop = nn.Dropout(p=pos_drop_rate)
@@ -889,7 +888,6 @@ class SigLIPViTAnysizeWrapper(nn.Module):
         if not delay_load or LOAD_VISION_EARLY:
             self.load_model()
         elif getattr(args, "unfreeze_mm_vision_tower", False):
-            # TODO: better detector is needed.
             print(f"The checkpoint seems to contain `vision_tower` weights: `unfreeze_mm_vision_tower`: True.")
             self.load_model()
 

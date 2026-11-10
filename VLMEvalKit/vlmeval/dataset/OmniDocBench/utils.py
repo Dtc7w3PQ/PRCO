@@ -87,7 +87,6 @@ def textblock2unicode(text):
     for match in inline_matches:
         position = [match.start(), match.end()]
         content = match.group(1) if match.group(1) is not None else match.group(2)
-        # print('-------- content-------', content)
         # Remove escape characters \
         clean_content = re.sub(r'\\([\\_&%^])', '', content)
 
@@ -325,7 +324,6 @@ def textblock_with_norm_formula(text):
     for match in inline_matches:
         position = [match.start(), match.end()]
         content = match.group(1) if match.group(1) is not None else match.group(2)
-        # print('-------- content-------', content)
 
         norm_content = normalized_formula(content)
         removal_positions.append((position[0], position[1], norm_content))
@@ -343,13 +341,10 @@ def inline_filter_unicode(text):
         text = str(text)
 
     # Replace inline formula boundary markers
-    #print('--------text-------',text)
     placeholder = '__INLINE_FORMULA_BOUNDARY__'
     text_copy = text.replace('$', placeholder).replace('\\(', placeholder).replace('\\)', placeholder)
-    #print('--------text_copy-------',text_copy)
     # Convert LaTeX content to Unicode representation
     text_copy = LatexNodes2Text().latex_to_text(text_copy)
-    #print('--------text_copy---unicode----',text_copy)
     # Restore boundary markers
     text_copy = text_copy.replace(placeholder, '$')
 
@@ -391,7 +386,6 @@ def inline_filter(text):
     for match in inline_matches:
         position = [match.start(), match.end()]
         content = match.group(1) if match.group(1) is not None else match.group(2)
-        # print('inline_content: ', content)
 
         # Remove escape characters \
         clean_content = re.sub(r'\\([\\_&%^])', '', content)
@@ -404,7 +398,6 @@ def inline_filter(text):
                 'content': match.group(0),
             })
             text = text.replace(match.group(0), '')
-            # print('-----Found inline formula: ', match.group(0))
         else:
             text = text.replace(match.group(0), content)
 
@@ -580,17 +573,13 @@ def md_tex_filter(content):
     # extract md table with ||
     md_table_mathces = md_table_reg.findall(content+'\n')
     if len(md_table_mathces) >= 2:
-        # print("md table found!")
-        # print("content:", content)
         content = convert_markdown_to_html(content)
-        # print('----------content after converting md table to html:', content)
         html_table_matches = html_table_reg.finditer(content)
         if html_table_matches:
             for match in html_table_matches:
                 matched = match.group(0)
                 position = [match.start(), match.end()]
                 # content = content.replace(match, '')
-                # print('content after removing the md table:', content)
                 content = content[:position[0]] + ' '*(position[1]-position[0]) + content[position[1]:]  # replace md table with space
                 pred_all.append({
                     'category_type': 'html_table',
@@ -598,7 +587,6 @@ def md_tex_filter(content):
                     'content': matched.strip(),
                     'fine_category_type': 'md2html_table'
                 })
-    # print('---------After md table: \n', content)
 
     # extract code blocks
     code_matches = code_block_reg.finditer(content)
@@ -636,9 +624,7 @@ def md_tex_filter(content):
         content_position += len(text)
         text = text.strip()
         text = text.strip('\n')
-        # print('ori_text: ', text)
         text = '\n'.join([_.strip() for _ in text.split('\n') if _.strip()])   # avoid some single newline content with many spaces
-        # print('after strip text: ', text)
 
         if text:  # Check if the stripped text is not empty
             if text.startswith('<table') and text.endswith('</table>'):
@@ -669,7 +655,6 @@ def md_tex_filter(content):
     pred_all = sorted(pred_all, key=lambda x: x['position'][0])
     for item in pred_all:
         pred_dataset[item['category_type']].append(item)
-    # pdb.set_trace()
     return pred_dataset
 
 
@@ -811,9 +796,6 @@ def compute_edit_distance_matrix_new(gt_lines, matched_lines):
                     distance_matrix[i][j] = Levenshtein.distance(gt_line, matched_line) / max(len(matched_line), len(gt_line))
         return distance_matrix
     except ZeroDivisionError:
-        #print("ZeroDivisionError occurred. Outputting norm_gt_lines and norm_pred_lines:")
-        # print("norm_gt_lines:", gt_lines)
-        # print("norm_pred_lines:", matched_lines)
         raise
 
 def get_gt_pred_lines(gt_items, pred_items, line_type):
@@ -898,7 +880,6 @@ def match_gt2pred_simple(gt_items, pred_items, line_type, img_name):
 
     match_list = []
     if not norm_gt_lines: # not matched pred should be concatenated
-        # print("One of the lists is empty. Returning an empty gt result.")
         # for pred_idx in range(len(norm_pred_lines)):
         pred_idx_list = range(len(norm_pred_lines))
         match_list.append({
@@ -918,7 +899,6 @@ def match_gt2pred_simple(gt_items, pred_items, line_type, img_name):
         })
         return match_list
     elif not norm_pred_lines: # not matched gt should be separated
-        # print("One of the lists is empty. Returning an empty pred result.")
         for gt_idx in range(len(norm_gt_lines)):
             match_list.append({
                 'gt_idx': [gt_idx],
@@ -949,11 +929,8 @@ def match_gt2pred_simple(gt_items, pred_items, line_type, img_name):
             pred_line = pred_lines[pred_idx]
             norm_pred_line = norm_pred_lines[pred_idx]
             edit = cost_matrix[gt_idx][pred_idx]
-            # print('edit_dist', edit)
             # if edit > 0.7:
-            #     print('! Not match')
         else:
-            # print('No match pred')
             pred_idx = ""
             pred_line = ""
             norm_pred_line = ""
@@ -974,7 +951,6 @@ def match_gt2pred_simple(gt_items, pred_items, line_type, img_name):
             'edit': edit,
             'img_id': img_name
         })
-        # print('-'*10)
         # [([0,1], 0),(2, 1), (1,2)] --> [0,2,1]/[0,1,2]
 
     pred_idx_list = [pred_idx for pred_idx in range(len(norm_pred_lines)) if pred_idx not in col_ind] # get not matched preds

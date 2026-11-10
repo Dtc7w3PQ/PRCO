@@ -80,7 +80,6 @@ def evaluate_candidate(
     # Map each PDF to its corresponding MD repeats (e.g., doc1_pg1_repeat1.md, doc1_pg2_repeat2.md, etc.)
     pdf_to_md_files = {}
     all_files = list(glob.glob(os.path.join(candidate_folder, "**/*.md"), recursive=True))
-    # print(all_files)
 
     for pdf_name in pdf_basenames:
         md_base = os.path.splitext(pdf_name)[0]

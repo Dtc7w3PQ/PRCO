@@ -461,7 +461,6 @@ class GroupNormalize(object):
         rep_mean = self.mean * (tensor.size()[0] // len(self.mean))
         rep_std = self.std * (tensor.size()[0] // len(self.std))
 
-        # TODO: make efficient
         for t, m, s in zip(tensor, rep_mean, rep_std):
             t.sub_(m).div_(s)
 
@@ -737,8 +736,6 @@ class Stack(object):
                 return np.concatenate([np.array(x)[:, :, ::-1]
                                        for x in img_group], axis=2)
             else:
-                # print(np.concatenate(img_group, axis=2).shape)
-                # print(img_group[0].shape)
                 return np.concatenate(img_group, axis=2)
 
 

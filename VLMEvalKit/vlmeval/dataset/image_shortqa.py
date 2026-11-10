@@ -36,7 +36,6 @@ def ShortQA_auxeval(model, line):
     for i in range(retry):
         output = model.generate(prompt, temperature=0.5 * i)
         ans = extraction(output)
-        # print(output, ans)
         if ans[0] in [0, 1]:
             return dict(hit=ans[0], log=ans[1])
 

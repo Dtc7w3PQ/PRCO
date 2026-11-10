@@ -174,7 +174,6 @@ def parse_open_response(response):
             return [response]
         return key_responses
 
-    # pdb.set_trace()
     key_responses = get_key_subresponses(response)
 
     pred_list = key_responses.copy()  # keep the original string response
@@ -204,7 +203,6 @@ def parse_multi_choice_response(response, all_choices, index2ans):
     for char in [",", ".", "!", "?", ";", ":", "'"]:
         response = response.strip(char)
     response = " " + response + " "  # Add space to avoid partial match
-    # print(response)
 
     index_ans = True
     ans_with_brack = False
@@ -215,13 +213,11 @@ def parse_multi_choice_response(response, all_choices, index2ans):
     # Step 2: If no candidates, look for choices with a period after (A. B. C. D.)
     for choice in all_choices:  # e.g., A. B. C. D.
         if f"{choice}." in response:
-            # print(f"Found choice with period after: {choice}")
             candidates.append(choice)
             ans_with_period = True
     # Step 2.1: If no candidates, look for choices with a colon after (A: B: C: D:)
     for choice in all_choices:  # e.g., A: B: C: D:
         if f"{choice}:" in response:
-            # print(f"Found choice with semicolon after: {choice}")
             candidates.append(choice)
             ans_with_colon = True
 
@@ -229,7 +225,6 @@ def parse_multi_choice_response(response, all_choices, index2ans):
     if len(candidates) == 0:
         for choice in all_choices:  # e.g., (A) (B) (C) (D)
             if f"({choice})" in response:
-                # print(f"Found choice with parentheses: {choice}")
                 candidates.append(choice)
                 ans_with_brack = True
 
@@ -237,21 +232,18 @@ def parse_multi_choice_response(response, all_choices, index2ans):
     if len(candidates) == 0:
         for choice in all_choices:  # e.g., A B C D
             if f"{choice} " in response:
-                # print(f"Found choice without parentheses (space after): {choice}")
                 candidates.append(choice)
 
     # Step 5: If no candidates and response has more than 5 tokens, try parsing based on content
     if len(candidates) == 0 and len(response.split()) > 5:
         for index, ans in index2ans.items():
             if ans.lower() in response.lower():
-                # print(f"Found answer content match: {ans}")
                 candidates.append(index)
                 index_ans = False  # It's content answer, not an index
 
     # Step 6: If still no candidates, randomly choose one
     if len(candidates) == 0:
         pred_index = "No Answere Found"
-        # print(f"No candidates found.")
     # Step 7: If multiple candidates found, use the one appearing last
     elif len(candidates) > 1:
         start_indexes = []
@@ -259,35 +251,28 @@ def parse_multi_choice_response(response, all_choices, index2ans):
             if ans_with_period:
                 for can in candidates:
                     index = response.rfind(f"{can}.")
-                    # print(f"Checking position of choice: {can} at {index}")
                     start_indexes.append(index)
             elif ans_with_colon:
                 for can in candidates:
                     index = response.rfind(f"{can}:")
-                    # print(f"Checking position of choice: {can} at {index}")
                     start_indexes.append(index)
             elif ans_with_brack:
                 for can in candidates:
                     index = response.rfind(f"({can})")
-                    # print(f"Checking position of choice with parentheses: {can} at {index}")
                     start_indexes.append(index)
             else:
                 for can in candidates:
                     index = response.rfind(f" {can} ")
-                    # print(f"Checking position of choice: {can} at {index}")
                     start_indexes.append(index)
         else:
             for can in candidates:
                 index = response.lower().rfind(index2ans[can].lower())
-                # print(f"Checking position of content match: {can} at {index}")
                 start_indexes.append(index)
         # Get the last one (max index)
         pred_index = candidates[np.argmax(start_indexes)]
-        # print(f"Multiple candidates, selected based on last occurrence: {pred_index}")
     else:
         # If only one candidate, use it
         pred_index = candidates[0]
-        # print(f"Only one candidate found, selected: {pred_index}")
 
     return pred_index
 
@@ -329,7 +314,6 @@ def eval_open(gold_i, pred_i):
     Evaluate an open question instance
     https://github.com/MMMU-Benchmark/MMMU/blob/51ce7f3e829c16bb44bc5445782686b4c3508794/eval/eval_utils.py#L191
     """
-    # print(gold_i)
     correct = False
     if isinstance(gold_i, list):
         # use float to avoid trivial matches
@@ -362,7 +346,6 @@ def eval_multi_choice(gold_i, pred_i):
     """
     correct = False
     # only they are exactly the same, we consider it as correct
-    # print(gold_i)
     if isinstance(gold_i, list):
         for answer in gold_i:
             if answer == pred_i:

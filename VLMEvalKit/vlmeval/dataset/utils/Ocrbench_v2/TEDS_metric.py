@@ -606,7 +606,6 @@ def csv_eval(predictions,references,easy, pred_type='json'):
         Returns:
         list: A list of tuples generated from the input dictionary.
         """
-        # print(data)
         converted_list = []
         for key, value in data.items():
             # Check if the value is a dictionary (indicating a nested structure)

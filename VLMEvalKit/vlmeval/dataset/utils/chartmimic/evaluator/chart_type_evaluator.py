@@ -26,12 +26,9 @@ class ChartTypeEvaluator:
 
         # [TAG] What is this for?
         # redunant_file = os.environ["VLMEVAL_CHARTMIMIC_UTILS_PATH"] + "/" + os.path.basename(golden_code_file).replace(".py", ".pdf")
-        # print(f"redunant_file: {redunant_file}")
-        # breakpoint()
         # # if os.path.exists(redunant_file) == True:
         # os.remove(redunant_file)
 
-        # print(self.metrics)
 
     def _get_chart_types(self, code_file):
 
@@ -67,7 +64,6 @@ class ChartTypeEvaluator:
         # pdf_file = re.findall(r"plt\.savefig\('(.*)'\)", code)
         # if len(pdf_file) != 0:
         # pdf_file = pdf_file[0].split(",")[0][:-1]
-        # print(pdf_file)
         # if os.path.basename(pdf_file) == pdf_file:
         # os.remove(pdf_file)
 
@@ -122,7 +118,6 @@ class ChartTypeEvaluator:
 # warnings.filterwarnings("ignore", category=UserWarning)
 
 # import sys
-# sys.path.insert(0, '{os.environ['PROJECT_PATH']}')
 # import matplotlib.pyplot as plt
 # from matplotlib.axes import Axes
 # import squarify

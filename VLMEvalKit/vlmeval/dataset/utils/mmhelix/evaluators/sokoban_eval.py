@@ -131,7 +131,6 @@ class SokobanEvaluator(BaseEvaluator):
         # Check if the puzzle is solved
         is_solved = puzzle.is_solved()
 
-        # Debug: Check the ground truth solution if available
         if ground_truth and isinstance(ground_truth, str):
             # Get the list of moves from the ground truth solution
             gt_moves = self.extract_answer(ground_truth)

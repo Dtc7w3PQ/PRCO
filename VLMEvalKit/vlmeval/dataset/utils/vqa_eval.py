@@ -309,7 +309,6 @@ def process_line_WildDoc(line, method='vqa_score'):
         ret['gt'] = answers
         ret['pred'] = line['prediction']
         # import pdb
-        # pdb.set_trace()
         ret['match'] = [anls_compute(x, ret['pred']) for x in ret['gt']]
     elif method == 'relaxed_accuracy':
         ret['gt'] = answers

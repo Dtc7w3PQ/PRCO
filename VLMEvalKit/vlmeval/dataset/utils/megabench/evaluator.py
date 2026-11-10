@@ -218,7 +218,6 @@ class MEGABenchEvaluator:
 
         summary["num_tasks"] = num_tasks
         summary["num_queries"] = num_queries
-        # print(f"\n=== Evaluation Summary ===\n{json.dumps(summary, indent=4)}\n")
 
         # Write back final data + summary
         output_data = {

@@ -149,7 +149,7 @@ class KeywordsStoppingCriteria(StoppingCriteria):
     def __call__(
         self, output_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs
     ) -> bool:
-        assert output_ids.shape[0] == 1, "Only support batch size 1 (yet)"  # TODO
+        assert output_ids.shape[0] == 1, "Only support batch size 1 (yet)"
         offset = min(output_ids.shape[1] - self.start_len, self.max_keyword_len)
         self.keyword_ids = [
             keyword_id.to(output_ids.device) for keyword_id in self.keyword_ids
@@ -843,7 +843,6 @@ class Qwen2VLChatAguvis(Qwen2VLChat):
             add_generation_prompt=False,
             chat_template=CHAT_TEMPLATE,
         )
-        # TODO: provide current action's low-level instruction
         # if False:
         #     # If low-level instruction is provided
         #     # We enforce using "Action: {low_level_instruction} to guide generation"
@@ -863,7 +862,6 @@ class Qwen2VLChatAguvis(Qwen2VLChat):
         else:
             raise ValueError(f"Invalid mode: {self.mode}")
         text += recipient_text
-        # print(text)
 
         images, videos = process_vision_info([messages])
         inputs = self.processor(

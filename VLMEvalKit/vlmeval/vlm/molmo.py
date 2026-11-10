@@ -200,6 +200,5 @@ class molmo(BaseModel):
                 answer = options.index(generated_text)
                 generated_text = chr(answer + ord('A'))
 
-        # print(dataset, prompt, generated_text, inputs['images'].size()) # uncomment to debug
 
         return generated_text

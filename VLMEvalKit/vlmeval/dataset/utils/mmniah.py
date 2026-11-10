@@ -271,7 +271,6 @@ def is_correct(answer, response):
             response = 'b'
 
         if len(response) != 1:
-            # print(f"Fail to parse {response_orig}")
             return 0
 
         return (ord(response) - ord('a')) == answer
@@ -283,11 +282,9 @@ def is_correct(answer, response):
             if isinstance(response, dict):
                 response = sum(list(response.values()), start=[])
         except:
-            # print(f"Fail to parse {response_orig} Exception: {e}")
             return 0
 
         if not isinstance(response, (list, tuple)):
-            # print(f"Fail to parse {response_orig} Exception: not a list!")
             return 0
 
         match = 0

@@ -6,7 +6,6 @@ from typing import List, Tuple
 
 import os
 
-# sys.path.insert(0, os.environ["PROJECT_PATH"])
 
 from ..eval_configs.global_config import run_script_safe
 
@@ -64,24 +63,17 @@ class ColorEvaluator:
         }
 
     def __call__(self, generation_code_file, golden_code_file):
-        # print("genearion_code_file", generation_code_file)
-        # print("golden_code_file", golden_code_file)
 
         self.golden_code_file = golden_code_file
 
-        # print(f"generation_code_file: {generation_code_file}")
         generation_colors = self._log_colors(generation_code_file)
-        # print(f"golden_code_file: {golden_code_file}")
         golden_colors = self._log_colors(golden_code_file)
-        # print(f"len(generation_colors): {len(generation_colors)}")
-        # print(f"len(golden_colors): {len(golden_colors)}")
 
         self._calculate_metrics(generation_colors, golden_colors)
 
         # [TAG] What is this for?
         # redunant_file = os.environ["PROJECT_PATH"] + "/" + os.path.basename(golden_code_file).replace(".py", ".pdf")
         # os.remove(redunant_file)
-        # print(self.metrics)
 
     def _log_colors(self, code_file):
         """
@@ -143,11 +135,7 @@ class ColorEvaluator:
         group_generation_colors = group_color(generation_colors)
         group_golden_colors = group_color(golden_colors)
 
-        # print("group_generation_colors", group_generation_colors)
-        # print("group_golden_colors", group_golden_colors)
 
-        # print("generation_colors", generation_colors)
-        # print("golden_colors", golden_colors)
 
         def calculate_similarity_serial(lst1, lst2):
             if len(lst1) == 0 or len(lst2) == 0:
@@ -170,7 +158,6 @@ class ColorEvaluator:
 
             # best_index[0] = sorted(best_index[0])
             # best_index[1] = sorted(best_index[1])
-            # print("best_index", best_index)
             for i1, i2 in zip(best_index[0], best_index[1]):
                 print(i1, i2)
             tmp_similarity = sum(
@@ -195,7 +182,6 @@ class ColorEvaluator:
                     [(shorter, perm) for perm in perms],
                 )
 
-            # print("length of similarities", len(similarities))
 
             # indexes = [item[0] for item in similarities]
             # similarities = [item[1] for item in similarities]
@@ -209,11 +195,8 @@ class ColorEvaluator:
             # index[0] = sorted(index[0])
             # index[1] = sorted(index[1])
             # for i1, i2 in zip(index[0], index[1]):
-            # print(i1, i2)
 
             # tmp_similarity = sum( calculate_similarity_single(c1, c2) for c1, c2 in zip(index[0], index[1]) ) / len(shorter)
-            # print("tmp_similarity", tmp_similarity)
-            # print("best_index", index)
 
             return max(similarities)
 
@@ -286,7 +269,6 @@ with open('{output_file}', 'w') as f:
 
 
 if __name__ == "__main__":
-    # sys.path.insert(0, '/home/yc21/project/Princess-s-CHI')
 
     evaluator = ColorEvaluator()
     # evaluator = TextEvaluator()
@@ -298,7 +280,6 @@ if __name__ == "__main__":
     golden_code_files = [f for f in os.listdir(golden_code_dir) if f.endswith(".py")]
 
     # for golden_code_file in golden_code_files:
-    # print(golden_code_file)
     # generation_code_file = generation_code_dir + golden_code_file
     # evaluator(generation_code_file, golden_code_dir + golden_code_file)
 

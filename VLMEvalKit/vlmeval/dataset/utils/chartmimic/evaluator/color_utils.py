@@ -66,7 +66,6 @@ def filter_color(color_list):
                 filtered_color_list.append(color_list[i])
         else:
             filtered_color_list.append(color_list[i])
-    # print("Filtered color list: ", filtered_color_list)
     return filtered_color_list
 
 

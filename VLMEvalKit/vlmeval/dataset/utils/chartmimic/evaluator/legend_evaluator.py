@@ -4,7 +4,6 @@ from typing import List, Tuple
 # load_dotenv()
 
 import os
-# sys.path.insert(0, os.environ["PROJECT_PATH"])
 
 from ..eval_configs.global_config import run_script_safe
 
@@ -28,7 +27,6 @@ class LegendEvaluator:
 
         # redunant_file = os.environ["PROJECT_PATH"] + "/" + os.path.basename(golden_code_file).replace(".py", ".pdf")
         # os.remove(redunant_file)
-        # print(self.metrics)
 
     def _log_legends(self, code_file):
         """
@@ -109,7 +107,6 @@ class LegendEvaluator:
                     # text must be equal, but x_rel and y_rel can be in a range
                     if t1[-1] == t2[-1] and abs(t1[0] - t2[0]
                                                 ) <= 10 and abs(t1[1] - t2[1]) <= 10:
-                        # print("matched:", t2)
                         n_correct += 1
                         generation_texts.remove(t2)
                         break
@@ -184,11 +181,9 @@ with open('{output_file}', 'w') as f:
 
 
 if __name__ == "__main__":
-    # sys.path.insert(0, '/home/yc21/project/Princess-s-CHI')
-
     evaluator = LegendEvaluator()
 
-    generation_code_file = "/home/yc21/project/Princess-s-CHI/dataset/line/line_9.py"
-    golden_code_file = "/home/yc21/project/Princess-s-CHI/results/chart2code_gpt_DirectAgent_results/direct/line_9.py"
+    generation_code_file = "dataset/line/line_9.py"
+    golden_code_file = "results/chart2code_gpt_DirectAgent_results/direct/line_9.py"
 
     evaluator(generation_code_file, golden_code_file)

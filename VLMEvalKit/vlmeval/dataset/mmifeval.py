@@ -289,16 +289,13 @@ def judge_one_item(item, retry=3):
                     # "check_whether_response_paragraph_number_in_range", "params":
                     # [3, 3]}]}}
                     score = 1.0
-                    # breakpoint()
                     for func_dict in constraint["judge"]["verify_funcs"]:
                         func = globals()[func_dict["func"]]
                         # use * to unpack the list, ** is used for dict
                         judge_result = func(item["prediction"], *func_dict["params"])
-                        # breakpoint()
                         if not judge_result:  # False -> score = 0
                             score = 0.0
                             break
-                    # breakpoint()
                     score_dict[constraint["key"]] = score
             # 3. process cmp_gpt
             for constraint in constraint_other:
@@ -331,7 +328,6 @@ def judge_one_item(item, retry=3):
 class MMIFEval(ImageBaseDataset):
     TYPE = "VQA"
 
-    # TODO: add dataset url and md5
     DATASET_URL = {"MM-IFEval": 'https://opencompass.openxlab.space/utils/VLMEval/MM-IFEval.tsv'}
     DATASET_MD5 = {
         "MM-IFEval": '973bb839961a449565073a5ee70ae7a6'

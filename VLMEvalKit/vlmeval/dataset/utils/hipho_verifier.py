@@ -281,15 +281,12 @@ def _strip_string(string):
 
     # linebreaks
     string = string.replace("\n", "")
-    # print(string)
 
     # remove inverse spaces
     string = string.replace("\\!", "")
-    # print(string)
 
     # replace \\ with \
     string = string.replace("\\\\", "\\")
-    # print(string)
 
     # matrix
     string = re.sub(r"\\begin\{array\}\{.*?\}", r"\\begin{pmatrix}", string)
@@ -304,17 +301,14 @@ def _strip_string(string):
         .replace("\\leq", "\\le")
         .replace("\\geq", "\\ge")
     )
-    # print(string)
 
     # remove \left and \right
     string = string.replace("\\left", "")
     string = string.replace("\\right", "")
-    # print(string)
 
     # Remove unit: miles, dollars if after is not none
     _string = re.sub(r"\\text{.*?}$", "", string).strip()
     if _string != "" and _string != string:
-        # print("Warning: unit not removed: '{}' -> '{}'".format(string, _string))
         string = _string
 
     # Remove unit: texts

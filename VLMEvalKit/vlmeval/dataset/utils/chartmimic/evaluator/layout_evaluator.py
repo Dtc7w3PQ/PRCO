@@ -4,7 +4,6 @@ from typing import List, Tuple
 # load_dotenv()
 
 import os
-# sys.path.insert(0, os.environ["PROJECT_PATH"])
 
 from ..eval_configs.global_config import run_script_safe
 
@@ -27,7 +26,6 @@ class LayoutEvaluator:
         # redunant_file = os.environ["PROJECT_PATH"] + "/" + os.path.basename(golden_code_file).replace(".py", ".pdf")
         # os.remove(redunant_file)
 
-        # print(self.metrics)
 
     def _log_layouts(self, code_file):
         """
@@ -158,9 +156,7 @@ if __name__ == "__main__":
 
     for idx in range(60, 61):
         print(f"Processing {idx}")
-        # print("Processing Golden Code")
         golden_code_file = f"{os.environ['PROJECT_PATH']}/dataset/ori/line_{idx}.py"
-        # print("Processing Generation Code")
         generation_code_file = f"{os.environ['PROJECT_PATH']}/results/chart2code_gpt_ScaffoldAgent_results/scaffold/line_{idx}.py"
         evaluator(generation_code_file, golden_code_file)
         print()

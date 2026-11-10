@@ -251,7 +251,6 @@ def evaluate_single_answer(
     from anls import anls_score
     t = target.strip().strip('%').strip()
     p = prediction.strip().strip('%').strip()
-    # print("Stripped", t, p)
     # Attempt numeric
     t_f = to_float(t)
     p_f = to_float(p)
@@ -261,7 +260,6 @@ def evaluate_single_answer(
         change = abs(p_f - t_f) / abs(t_f)
         return 1.0 if change <= max_relative_change else 0.0
     # Fallback text
-    # print("P:", p, "T: ", t)
     return anls_score(prediction=p.lower(), gold_labels=[t.lower()], threshold=0.5)
 
 
@@ -286,7 +284,6 @@ def relaxed_correctness_chartqapro(
 
     # Evaluate elements
     scores: List[float] = []
-    # print(t_list, p_list)
     for idx in range(max(len(t_list), len(p_list))):
         if idx >= len(t_list) or idx >= len(p_list):
             # Model predicted more or less elements that necessary.
@@ -324,7 +321,6 @@ def evaluate_predictions_chartqapro(predictions, pred_key='prediction'):
 
         always_use_exact_match = True if split in ['Fact Checking', 'Multi Choice'] else False
         score = relaxed_correctness_chartqapro(gt, pred, year_flags=year_flags_per_row)
-        # print(gt, pred, year_flags_per_row, score)
         match_nums_per_split[split].append(score)
         match_nums.append(score)
 

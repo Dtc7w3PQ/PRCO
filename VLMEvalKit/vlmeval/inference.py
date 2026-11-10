@@ -309,7 +309,6 @@ def infer_data_job(
     if osp.exists(result_file):
         if rank == 0:
             data = load(result_file)
-            # breakpoint()
             results = {k: v for k, v in zip(data['index'], data['prediction'])}
             if not ignore_failed:
                 results = {k: v for k, v in results.items() if FAIL_MSG not in str(v)}

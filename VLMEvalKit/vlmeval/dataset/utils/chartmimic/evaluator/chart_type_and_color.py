@@ -15,7 +15,6 @@ import squarify
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 
-# sys.path.insert(0, f'{os.environ["PROJECT_PATH"]}')
 
 
 drawed_colors = []

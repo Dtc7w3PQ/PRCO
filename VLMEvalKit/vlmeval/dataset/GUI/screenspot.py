@@ -185,7 +185,7 @@ class ScreenSpot(ImageBaseDataset):
             data = data[~pd.isna(data["image"])]
 
         self.meta_only = True
-        self.parse_response_func = parse_bbox_aguvis  # TODO: parse function can be specified through kwargs when initializing the dataset # noqa: E501
+        self.parse_response_func = parse_bbox_aguvis
 
         # The image field can store the base64 encoded image or another question index (for saving space)
         if "image" in data:

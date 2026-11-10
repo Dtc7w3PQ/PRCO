@@ -84,7 +84,6 @@ def doc_text_eval(eval_type, predicts):
         if k == "eval question num":
             continue
         mean_dict[k] /= len(result)
-    # print(json.dumps(mean_dict, indent=4))
     return mean_dict
 
 

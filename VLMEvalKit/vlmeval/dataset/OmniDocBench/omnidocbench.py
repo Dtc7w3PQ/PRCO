@@ -272,7 +272,6 @@ class end2end_evaluator():
         elif self.match_method == 'no_split':
             match_gt2pred = match_gt2pred_no_split
         else:
-            # print('Invalid match method name. The quick_match will be used.')
             match_gt2pred = match_gt2pred_quick
 
         pred_dataset = md_tex_filter(pred_content)
@@ -461,8 +460,6 @@ class table_evalutor():
                     if ann['category_type'] not in self.category_filter:
                         continue
                 if not ann.get(pred_key):
-                    # print(f'Cannot find pred for {img_name}. ann is {ann}')
-                    # pdb.set_trace()
                     count += 1
                     continue
                 else:

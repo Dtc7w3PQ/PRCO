@@ -281,7 +281,6 @@ def judge_one_item(item):
             output_py.replace(".py", ".pdf"), output_py.replace(".py", ".png")
         )
         # logger.info(f"converted pdf to image: {output_py.replace('.py', '.png')}")
-        # breakpoint()
 
     # --- Got py and its pdf ---
     # >>> 2. Low Level Evaluation <<<
@@ -388,7 +387,6 @@ def judge_one_item(item):
 class ChartMimic(ImageBaseDataset):
     TYPE = "VQA"
 
-    # TODO: add dataset url and md5
     DATASET_URL = {
         "ChartMimic_v1_customized": "https://opencompass.openxlab.space/utils/VLMEval/ChartMimic_v1_customized.tsv",
         "ChartMimic_v1_direct": "https://opencompass.openxlab.space/utils/VLMEval/ChartMimic_v1_direct.tsv",
@@ -660,7 +658,6 @@ class ChartMimic(ImageBaseDataset):
         os.chdir(cur_work_dir)
         if os.path.exists(pdf_tmp_dir):
             shutil.rmtree(pdf_tmp_dir)
-        # breakpoint()
 
         # logger.info(f"storage: {storage}")
         eval_data_all = load(storage)

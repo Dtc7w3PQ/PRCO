@@ -4,7 +4,6 @@ from typing import List, Tuple
 # load_dotenv()
 
 import os
-# sys.path.insert(0, os.environ["PROJECT_PATH"])
 
 from ..eval_configs.global_config import run_script_safe
 
@@ -27,7 +26,6 @@ class GridEvaluator:
 
         # redunant_file = os.environ["PROJECT_PATH"] + "/" + os.path.basename(golden_code_file).replace(".py", ".pdf")
         # os.remove(redunant_file)
-        # print(self.metrics)
 
     def _log_legends(self, code_file):
         """
@@ -169,13 +167,12 @@ with open('{output_file}', 'w') as f:
 
 
 if __name__ == "__main__":
-    # sys.path.insert(0, '/home/yc21/project/Princess-s-CHI')
 
     evaluator = GridEvaluator()
 
     for idx in range(1, 40):
         print(f"Processing {idx}")
-        generation_code_file = f"/home/yc21/project/Princess-s-CHI/dataset/line/line_{idx}.py"
-        golden_code_file = f"/home/yc21/project/Princess-s-CHI/results/chart2code_gpt_DirectAgent_results/direct/line_{idx}.py"
+        generation_code_file = f"dataset/line/line_{idx}.py"
+        golden_code_file = f"results/chart2code_gpt_DirectAgent_results/direct/line_{idx}.py"
         evaluator(generation_code_file, golden_code_file)
         print()

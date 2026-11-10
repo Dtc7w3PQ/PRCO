@@ -477,7 +477,6 @@ class MMHELIX(ImageBaseDataset):
         # scores_only_df = combined_df[['average_score']].copy()
         # scores_only_tsv_file = osp.splitext(eval_file)[0] + '_scores_only.tsv'
         # scores_only_df.to_csv(scores_only_tsv_file, sep='\t', index=False, encoding='utf-8')
-        # print(f"scores only results saved to: {scores_only_tsv_file}")
 
         # Save detailed_results as JSON file
         detailed_json_file = osp.splitext(eval_file)[0] + '_detailed_results.json'

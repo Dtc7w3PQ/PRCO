@@ -213,7 +213,6 @@ class SymbolicPlanningMetricTest:
         domain = Domain(" ", domain_pddl)
 
         ## Parse trajectory, setup initial and goal state
-        # response = eval_context["gt_plan"]  # for debug
         match response:
             case str():
                 candidates = response.split("\n")

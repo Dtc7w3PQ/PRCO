@@ -12,7 +12,7 @@ class ConstraintBase:
         # Convert line to runs of filled cells ('s' = filled, 'e' = empty, 0 = undefined)
         runs = []  # Will store lengths of consecutive filled cells
         count = 0  # Counter for current run length
-        current_run = []  # Track cells in current run for debugging/future use
+        current_run = []
 
         if hints == [0]:
             # the line should not contain 's'
@@ -68,10 +68,6 @@ class ConstraintBase:
                 # Can't have more runs than hints
                 if len(definite_runs) > len(hints):
                     return False
-                # FIXME: Additional validation commented out
-                # Check if any run is longer than corresponding hint
-                # if any(definite_runs[j] > hints[j] for j in range(len(definite_runs))):
-                #     return False
         return True
 
 class ConstraintRowHints(ConstraintBase):

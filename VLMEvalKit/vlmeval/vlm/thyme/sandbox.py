@@ -433,7 +433,6 @@ class CropCoordinateTransformer(ast.NodeTransformer):
             # name in slice), skip
             if not all(isinstance(v, (int, float))
                        for v in [y1_val, y2_val, x1_val, x2_val]):
-                # print(f"INFO: Skipping slice clamping for '{node.targets[0].id}' due to non-numeric slice parts.")
                 return self.generic_visit(node)
 
             # Keep this order for comparison
@@ -608,7 +607,7 @@ def _sandboxed_execution_target(
         "Image": Image,
         "UnidentifiedImageError": UnidentifiedImageError,
         "numpy": numpy,
-        "np": numpy,  # TODO: pandayin: Check this? this seems like a duplicate
+        "np": numpy,
         "json": json,  # Make json directly available
         "re": re,  # Make re directly available
         # PIL is available via __import__ or Image class
@@ -648,7 +647,6 @@ def _sandboxed_execution_target(
             code_to_execute, options={"aggressive": 2}
         )
         # if formatted_code.strip() != code_to_execute.strip():
-        #     print(f"INFO: Attempted to auto-format code for {item_id} using autopep8.")
         code_to_execute = formatted_code
     except Exception:
         pass
@@ -711,7 +709,6 @@ def _sandboxed_execution_target(
                         "Crop coordinate clamping not fully updated in code string."
                     )
         except SyntaxError:
-            # print(f"ERROR: Syntax error when parsing code for crop coordinate clamping: {e}")
             pass
         except Exception as e:
             print(
@@ -720,9 +717,6 @@ def _sandboxed_execution_target(
             pass
     else:
         if input_image_path:
-            # print(
-            #     f"INFO: Skipping crop coordinate clamping because image dimensions"
-            #     f"could not be obtained for '{input_image_path}'.")
             pass
 
     try:  # Wrap AST parsing for OpenCV transformer in try-except
@@ -782,7 +776,6 @@ def _sandboxed_execution_target(
             for full_path_str in unique_paths_found:
                 if full_path_str.startswith(original_prefix):
                     # relative_path_suffix = full_path_str[len(original_prefix):]
-                    # print('full_path_str', unique_paths_found)
                     relative_path_suffix = full_path_str[
                         len(original_prefix):
                     ].replace(" ", "")
@@ -830,7 +823,6 @@ def _sandboxed_execution_target(
                     f"'{processed_path_from_code}', which is not a valid file path in {temp_output_dir}."
                 )
                 processed_path_from_code = None
-        # print(full_print_output)
         if full_print_output:
             path_search_pattern = rf"({re.escape(temp_output_dir)}[^\s\'\"]+\.(?:jpg|jpeg|png|bmp|gif|tiff))"
             possible_image_path_list = get_image_paths(temp_output_dir)

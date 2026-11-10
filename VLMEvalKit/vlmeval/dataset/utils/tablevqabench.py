@@ -202,7 +202,6 @@ def fintabnet_normalize(s):
     try:
         return float(s), [float(s), float(s_unit_free)]
     except ValueError:
-        # Return the original string and the error for debugging purposes
         return s, [s, s_unit_free]
 
 

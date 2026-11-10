@@ -197,7 +197,6 @@ class JTVLChatWrapper(BaseAPI):
         inputs = [inputs] if isinstance(inputs, str) else inputs
         dataset = kwargs.get('dataset', None)
         prompt, image_path = self.message_to_promptimg(message=inputs, dataset=dataset)
-        # print("prompt:",prompt)
         if image_path:
             send_data = self.get_send_data(
                 prompt=prompt,

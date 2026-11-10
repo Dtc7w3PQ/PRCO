@@ -311,7 +311,6 @@ class MathJudger:
         except:
             return False
         if expression1 == expression2:
-            # print("原生相等")
             return True
 
         # 去除字符串中的中文字符，因为上面已经判断过了类似回答为"能"或"不能"的含有中文字符的回答情况
@@ -338,7 +337,6 @@ class MathJudger:
 
             item1 = temp_list1[idx]
             self.precision = precision[idx]
-            # print(self.precision)
 
             for item2 in temp_list2:
                 try:
@@ -368,14 +366,12 @@ class MathJudger:
     @timeout_decorator.timeout(30)
     def is_equal(self, expression1, expression2):
         if expression1 == expression2 and expression1 != "" and expression2 != "":
-            # print("原生等价")
             return True
 
         # 先判断是否是两个区间，是的话进行判断相等，不相等则返回 False
         if self.is_interval(expression1) and self.is_interval(expression2):
             try:
                 if self.interval_equal(expression1, expression2):
-                    # print("区间等价")
                     return True
             except:
                 return False
@@ -383,7 +379,6 @@ class MathJudger:
         # 再判断是否在数值上相等
         try:
             if self.numerical_equal(expression1, expression2):
-                # print("数值等价")
                 return True
         except:
             pass
@@ -391,7 +386,6 @@ class MathJudger:
         # 再判断是否是表达式相等
         try:
             if self.expression_equal(expression1, expression2) and not ("=" in expression1 and "=" in expression2):
-                # print("表达式等价")
                 return True
         except:
             pass
@@ -399,7 +393,6 @@ class MathJudger:
         # 再判断是否是等式相等
         try:
             if self.equation_equal(expression1, expression2):
-                # print("等式等价")
                 return True
         except:
             pass

@@ -148,7 +148,6 @@ class GraniteVision3(BaseModel):
         w, h = image.size
         scale = max_dim / max(w, h)
         new_size = (int(w * scale), int(h * scale))
-        # print(f"Resized image from {(w,h)} to {new_size}")
         return image.resize(new_size, Image.LANCZOS)
 
     def generate_inner(self, message, dataset=None):

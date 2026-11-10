@@ -13,7 +13,6 @@ try:
     from .utils import build_judge
 except ImportError:
     raise NotImplementedError("Judge functionality is not available in your current VLMEvalKit version.")
-    # DEBUG_MESSAGE = "Your VLMEvalKit version may not support Judge models."
 
 
 class GOBenchDataset(ImageBaseDataset):

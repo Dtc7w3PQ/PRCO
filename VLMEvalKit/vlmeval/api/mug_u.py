@@ -119,7 +119,6 @@ class MUGUWrapper(BaseAPI):
         message = [dict(type='text', value=prompt)]
         image_num = len(tgt_path)
         max_num = max(1, min(max_num, 64 // image_num))
-        # TODO：support upscale_flag
         message.extend([dict(type='image', value=s, max_dynamic_patch=max_num) for s in tgt_path])
 
         if self.use_mpo_prompt:

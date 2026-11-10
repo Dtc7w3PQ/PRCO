@@ -60,7 +60,6 @@ def insert_subtitles_into_frames(
             zip(frames[cur_i:], frame_timestamps[cur_i:])
         ):
             if frame_timestamp <= subtitle_timestamp:
-                # print("frame:", frame_timestamp)
                 interleaved_list.append({"type": "image", "value": frame})
                 cur_i += 1
             else:

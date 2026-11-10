@@ -96,7 +96,6 @@ class AutoScoringJudge:
         except:
             return False
         if expression1 == expression2:
-            # print("Exactly equal")
             return True
 
         # Remove Chinese characters from the string, as answers like "yes" or "no" in Chinese have been considered
@@ -164,14 +163,12 @@ class AutoScoringJudge:
     def is_equal(self, expression1, expression2):
         # Default first expression is ground truth. Check if expressions are equal in different aspects
         if expression1 == expression2 and expression1 != "" and expression2 != "":
-            # print("Equivalent natively")
             return True
 
         # First check if both are intervals
         if self.is_interval(expression1) and self.is_interval(expression2):
             try:
                 if self.interval_equal(expression1, expression2):
-                    # print("Interval equivalent")
                     return True
             except:
                 return False
@@ -179,14 +176,12 @@ class AutoScoringJudge:
         # Then check for numerical equality
         try:
             if self.numerical_equal(expression1, expression2):
-                # print("Numerically equivalent")
                 return True
         except:
             pass
         # Then check if expressions are mathematically equal
         try:
             if self.expression_equal(expression1, expression2) and not ("=" in expression1 and "=" in expression2):
-                # print("Expression equivalent")
                 return True
         except:
             pass
@@ -194,7 +189,6 @@ class AutoScoringJudge:
         # Lastly, check for equation equality
         try:
             if self.equation_equal(expression1, expression2):
-                # print("Equation equivalent")
                 return True
         except:
             pass

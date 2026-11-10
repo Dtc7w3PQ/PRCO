@@ -259,7 +259,6 @@ def cal_acc_all(pred_info, answer_info):
     acc_info, error_info = {}, {}
     for file_name, answer in answer_info.items():
         # if file_name not in pred_info:
-        #     print("---> error: pdt not found: {}".format(file_name))
         #     continue
         pred = pred_info.get(file_name, {})
         acc = cal_acc(pred, answer)

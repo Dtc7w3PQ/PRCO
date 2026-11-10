@@ -26,11 +26,8 @@ class TextEvaluator:
         self._calculate_metrics(generation_texts, golden_texts)
 
         # [TAG] What is this for?
-        # print(f"os.getcwd(): {os.getcwd()}")
-        # breakpoint()
         # redunant_file = os.environ["PROJECT_PATH"] + "/" + os.path.basename(golden_code_file).replace(".py", ".pdf")
         # os.remove(redunant_file)
-        # print(self.metrics)
 
     def _log_texts(self, code_file):
         """
@@ -124,7 +121,6 @@ class TextEvaluator:
                     # text must be equal, but x_rel and y_rel can be in a range
                     if t1[-1] == t2[-1] and abs(t1[0] - t2[0]
                                                 ) <= 10 and abs(t1[1] - t2[1]) <= 10:
-                        # print("matched:", t2)
                         n_correct += 1
                         generation_texts.remove(t2)
                         break
@@ -195,12 +191,11 @@ for ax in all_axes:
 
 
 if __name__ == "__main__":
-    # sys.path.insert(0, '/home/yc21/project/Princess-s-CHI')
 
     evaluator = TextEvaluator(use_axs=False)
     # evaluator = TextEvaluator()
 
-    generation_code_file = "/home/yc21/project/Princess-s-CHI/dataset/line/line_7.py"
-    golden_code_file = "/home/yc21/project/Princess-s-CHI/results/chart2code_gpt_DirectAgent_results/direct/line_7.py"
+    generation_code_file = "dataset/line/line_7.py"
+    golden_code_file = "results/chart2code_gpt_DirectAgent_results/direct/line_7.py"
 
     evaluator(generation_code_file, golden_code_file)

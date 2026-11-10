@@ -78,13 +78,8 @@ class UrsaPreTrainedModel(PreTrainedModel):
 class UrsaForConditionalGeneration(UrsaPreTrainedModel):
     def __init__(self, config: UrsaConfig):
         super().__init__(config)
-        # print(config)
-        # print(type(config.vision_config))
-        # print(type(config.aligner_config))
         self.vision_model = HybridVisionTower(**config.vision_config["params"])
-        # print(config.aligner_config)
 
-        # print(config.aligner_config.params)
         aligner_config = AlignerConfig(**config.aligner_config)
         self.aligner = MlpProjector(aligner_config.params)
         self.vocab_size = config.text_config.vocab_size
@@ -405,7 +400,6 @@ class UrsaForTokenClassification(UrsaPreTrainedModel):
     def _init_weights(self, module):
         """Initialize the weights."""
         if isinstance(module, nn.Linear):
-            # print(module)
             nn.init.xavier_uniform_(module.weight)
             nn.init.zeros_(module.bias)
 

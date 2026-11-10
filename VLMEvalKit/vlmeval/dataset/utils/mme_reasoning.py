@@ -821,13 +821,11 @@ def calculate_answer_function_skyscraper(response_list, answer=None, special_inf
     for i in range(size):
         for j in range(size):
             if base_matrix[i][j] is not None and base_matrix[i][j]!=response_list[i][j]:
-                # print("Mismatch with base matrix")
                 return False
 
 
     for i in range(size):
         if len(set(grid[i])) != size or len(set(row[i] for row in grid)) != size:
-            # print("repeat height on one row or colomn")
             return False
 
     def count_higher_than_previous(lst, target_count):
@@ -847,30 +845,25 @@ def calculate_answer_function_skyscraper(response_list, answer=None, special_inf
         if h is None:
             continue
         if not count_higher_than_previous(vert[index], h):
-            # print("wrong visible towers")
             return False
 
     for index, h in enumerate(visible_skyscrapers[1]):
         if h is None:
             continue
         if not count_higher_than_previous(hori[index], h):
-            # print("wrong visible towers")
             return False
 
     for index, h in enumerate(visible_skyscrapers[2]):
         if h is None:
             continue
         if not count_higher_than_previous(hori[index][::-1], h):
-            # print("wrong visible towers")
             return False
 
     for index, h in enumerate(visible_skyscrapers[3]):
         if h is None:
             continue
         if not count_higher_than_previous(vert[index][::-1], h):
-            # print("wrong visible towers")
             return False
-    # print("Skyscraper: All rules satisfied.")
     return True
 
 
@@ -882,7 +875,6 @@ def calculate_answer_function_sudoku_4(response_list, answer=None, special_info=
         # Check rows and columns
         for i in range(4):
             if len(set(grid[i])) != 4 or len(set(row[i] for row in grid)) != 4:
-                # print("repeat numbers in row or colomn")
                 return False
 
         # Check 2x2 sub-grids
@@ -894,9 +886,7 @@ def calculate_answer_function_sudoku_4(response_list, answer=None, special_info=
         ]
         for sub_grid in sub_grids:
             if len(set(sub_grid)) != 4:
-                # print("repeat numbers in sub matrix")
                 return False
-        # print("Sudoku_4: All rules satisfied.")
         return True
 
     try:
@@ -910,7 +900,6 @@ def calculate_answer_function_sudoku_4(response_list, answer=None, special_info=
         for i in range(4):
             for j in range(4):
                 if base_matrix[i][j] is not None and base_matrix[i][j]!=grid[i][j]:
-                    # print("Mismatch with base matrix")
                     return False
 
         # Validate the Sudoku grid

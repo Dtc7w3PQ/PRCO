@@ -716,7 +716,6 @@ class TableTest(BasePDFTest):
 
         # Check each table
         for table_data in tables_to_check:
-            # Removed debug print statement
             table_array = table_data.data
             header_rows = table_data.header_rows
             header_cols = table_data.header_cols

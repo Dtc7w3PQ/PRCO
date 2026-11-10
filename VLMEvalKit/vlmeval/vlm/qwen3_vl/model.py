@@ -58,7 +58,6 @@ def is_moe_model(model_path: str) -> bool:
                 if isinstance(v, int) and v > 0:
                     return True
     except Exception:
-        # Best-effort only; fallback to non-MoE.
         pass
 
     return False

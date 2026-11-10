@@ -29,7 +29,6 @@ def check_whether_response_paragraph_number_in_range(
             cleaned_response) if p.strip()]
 
     actual_count = len(paragraphs)
-    # print(actual_count)
 
     return lower_bound <= actual_count <= upper_bound
 
@@ -48,7 +47,6 @@ def check_whether_response_sentence_number_in_range(
     # use nltk to split the response into sentences
     sentences = nltk.sent_tokenize(response)
     actual_count = len(sentences)
-    # print(actual_count)
 
     return lower_bound <= actual_count <= upper_bound
 
@@ -73,7 +71,6 @@ def check_whether_each_paragraph_sentence_number_in_range(
         # use nltk to split the paragraph into sentences
         sentences = nltk.sent_tokenize(paragraph)
         actual_count = len(sentences)
-        # print(f"paragraph {i}: {actual_count}")
         if actual_count < lower_bound or actual_count > upper_bound:
             return False
 
@@ -103,7 +100,6 @@ def check_whether_each_paragraph_sentence_number_in_range_list(
         lower_bound, upper_bound = range_pair
         sentences = nltk.sent_tokenize(paragraph)
         actual_count = len(sentences)
-        # print(f"paragraph {i}: {actual_count}")
         if not (lower_bound <= actual_count <= upper_bound):
             return False
 
@@ -119,7 +115,6 @@ def check_whether_response_word_count_in_range(
     response_clean = re.sub(r"[^\w\s.-]", "", response)
     word_list = response_clean.split()
     word_count = len(word_list)
-    # print(word_count)
     return lower_bound <= word_count <= upper_bound
 
 # HumanCheck: True
@@ -146,7 +141,6 @@ def check_whether_each_paragraph_word_count_in_range(
     for i, paragraph in enumerate(paragraphs):
         paragraph_clean = re.sub(r"[^\w\s.-]", "", paragraph)
         word_count = len(paragraph_clean.split())
-        # print(f"paragraph {i} word count: {word_count}")
         if not (lower_bound <= word_count <= upper_bound):
             return False
 
@@ -394,7 +388,6 @@ def check_whether_has_no_arabic_number_in_response(response: str) -> bool:
         number_pattern,
         response,
         flags=re.IGNORECASE | re.VERBOSE)
-    # print(numbers)
     return len(numbers) == 0
 
 # HumanCheck: True
@@ -421,7 +414,6 @@ def check_whether_has_no_arabic_number_in_response(response: str) -> bool:
 #             base_digits = base.replace(".", "").lstrip("0") or "0"
 
 #         significant_count = len(base_digits)
-#         print(f"Number: {number}, Significant digits: {significant_count}")
 
 #         if significant_count != significant_digits:
 #             return False

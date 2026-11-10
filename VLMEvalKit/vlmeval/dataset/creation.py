@@ -386,7 +386,6 @@ def Generate_Creation_MMBench_judge(model, image_list, prompt):
                 else:
                     raise ValueError(f"Image not found: {img_path}")
             input_msg.append({'type': 'text', 'value': prompt[key]})
-            # print(f'using image {image_list} and text')
             response[key] = model.generate(input_msg)
         else:
             response[key] = model.generate(prompt[key])

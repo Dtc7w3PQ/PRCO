@@ -216,7 +216,6 @@ class MMAlignBench(ImageBaseDataset):
             else:
                 for k,v in ans.items():
                     ans[k] = {'score': v[0], 'resp': v[1]}
-            # breakpoint()
             data['score'] = [ans[x]['score'] for x in data['index']]
             data['judge'] = [ans[x]['resp'] for x in data['index']]
             data.pop('image')

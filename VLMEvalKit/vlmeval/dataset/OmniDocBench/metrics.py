@@ -118,7 +118,6 @@ def get_page_split(samples, page_info):   # Page level metric
         result[metric] = page_avg.to_dict()
 
     result = sort_nested_dict(result)
-    # print('----Page Attribute---------------')
     show_result(result)
     return result
 
@@ -178,7 +177,6 @@ class call_TEDS():
 
             score = teds.evaluate(pred, gt)
             score_structure_only = teds_structure_only.evaluate(pred, gt)
-            # print('TEDS score:', score)
             group_scores['all'].append(score)
             group_scores_structure_only['all'].append(score_structure_only)
 

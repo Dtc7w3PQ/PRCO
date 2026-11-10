@@ -58,7 +58,6 @@ class CustomConfig(Config):
     """
     def rename(self, node1, node2):
         """Compares attributes of trees"""
-        # print(node1.tag)
         if (
             (node1.tag != node2.tag)
             or (node1.colspan != node2.colspan)

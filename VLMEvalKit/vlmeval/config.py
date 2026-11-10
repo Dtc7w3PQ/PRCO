@@ -845,7 +845,7 @@ long_vita_series = {
 
 interns1_mini = {
     "Intern-S1-mini": partial(
-        InternS1Chat, model_path="/mnt/shared-storage-user/mllm/lijinsong/models/Intern-S1-mini/"
+        InternS1Chat, model_path="path/to/Intern-S1-mini"
     ),
 }
 

@@ -507,7 +507,6 @@ def log_function(func):
                 lines = result
                 for line in lines:
                     color = convert_color_to_hex(line.get_color())
-                    # print("color", color)
                     drawed_colors.append(func_name + "_polar" + "--" + color)
                     drawed_objects[func_name + "_polar" + "--" + color] = line
             elif func.__name__ == "scatter" and isinstance(args[0], PolarAxes):

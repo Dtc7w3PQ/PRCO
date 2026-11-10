@@ -8,7 +8,7 @@
 **Official implementation of _Seeing with You: Perception-Reasoning Co-evolution for Multimodal Reasoning_**
 
 
-[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/) [![Hugging Face Collection](https://img.shields.io/badge/Model_Checkpoints-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/miaozq/prco) [![GitHub Stars](https://img.shields.io/github/stars/Dtc7w3PQ/PRCO?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=000000)](https://github.com/Dtc7w3PQ/PRCO)
+[![Paper](https://img.shields.io/badge/paper-A42C25?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2603.28618) [![Hugging Face Collection](https://img.shields.io/badge/Model_Checkpoints-fcd022?style=for-the-badge&logo=huggingface&logoColor=000)](https://huggingface.co/collections/miaozq/prco) [![GitHub Stars](https://img.shields.io/github/stars/Dtc7w3PQ/PRCO?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=000000)](https://github.com/Dtc7w3PQ/PRCO)
 
 </div>
 
@@ -34,13 +34,13 @@ PRCO is a dual-role reinforcement learning with verifiable rewards (RLVR) framew
 
 ## 🚀 News
 
-- **[2026/03/25]** We've released the paper, model checkpoints, and evaluation code for PRCO.
+- **[2026/03/30]** The [PRCO paper](https://arxiv.org/abs/2603.28618) is available on arXiv.
 ---
-## TODO List
+## Release Status
 
 - [x] Release PRCO checkpoints (3B / 7B / 8B)
 - [x] Release evaluation code
-- [ ] Release training code
+- [x] Release PRCO-7B training code ([training guide](training/README.md))
 
 ---
 
@@ -63,21 +63,6 @@ PRCO is a dual-role reinforcement learning with verifiable rewards (RLVR) framew
 | Qwen2.5-VL-7B | 43.02 | 25.46 | 70.20 | 35.43 | 20.35 | 45.41 | 35.49 | 64.26 | 42.45 |
 | DAPO | 48.73 | 29.30 | 74.80 | 45.62 | 26.14 | 47.87 | 41.38 | 65.40 | 47.41 |
 | PRCO-7B | **49.49** | **30.86** | **77.10** | **50.29** | **29.74** | **49.66** | **42.08** | **67.80** | **49.63** |
-<!-- 
-### Main Results on 8 Benchmarks (3B)
-
-| Model | MathVerse | MathVision | MathVista | WeMath | DynaMath | LogicVista | MMMU-Pro | MMStar | Avg. |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Qwen2.5-VL-3B | 34.13 | 22.50 | 65.00 | 23.52 | 12.37 | 38.70 | 26.76 | 56.06 | 34.88 |
-| DAPO | 40.98 | 27.40 | 70.20 | 35.14 | 20.35 | 43.62 | 31.73 | 60.40 | 41.23 |
-| PRCO-3B | **42.51** | 27.27 | **70.30** | **40.00** | **22.36** | **44.97** | **31.85** | **61.00** | **42.53** | -->
-
-<!-- <p align="center">
-  <img src="assets/main_results.png" width="92%" alt="Main Results" />
-</p>
-<p align="center">
-  <em>Figure: Main benchmark results and analysis. Replace this placeholder with your final figure.</em>
-</p> -->
 
 ---
 
@@ -106,7 +91,11 @@ pip install -r requirements.txt
 
 PRCO-3B / PRCO-7B / PRCO-8B use the same evaluation workflow.
 
-1. Fill environment variables in `VLMEvalKit/.env`:
+1. Copy `VLMEvalKit/.env.example` to `VLMEvalKit/.env`, then fill in the environment variables:
+
+```bash
+cp VLMEvalKit/.env.example VLMEvalKit/.env
+```
 
 ```bash
 LMUData="<PATH_TO_LMUDATA>"
@@ -159,11 +148,16 @@ Predictions and evaluation outputs are written under:
 
 ### 3. Training
 
-Train PRCO with the dual-role Observer/Solver framework:
+The PRCO-7B Observer/Solver training recipe is configured for 200 optimizer steps. It requires CUDA GPUs, separate training and validation datasets, and a running vLLM judge service. From the repository root, use a separate training environment:
 
 ```bash
-Coming soon...
+cd training
+pip install -e .
+bash scripts/train_prco_7b.sh --dry-run
+DATA_ROOT=./data VLLM_JUDGE_IP=127.0.0.1 VLLM_JUDGE_PORTS=9200 bash scripts/train_prco_7b.sh
 ```
+
+See [the training guide](training/README.md) for dataset layout, judge service setup, configuration and checkpoint export.
 ---
 
 ## Citation
@@ -171,10 +165,10 @@ Coming soon...
 If you find this project helpful, please cite our paper:
 
 ```bibtex
-@article{Coming soon,
-  title={Seeing with You: Perception-Reasoning Co-evolution for Multimodal Reasoning},
-  author={AUTHOR_LIST},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+@article{miao2026seeing,
+  title={Seeing with You: Perception-Reasoning Coevolution for Multimodal Reasoning},
+  author={Miao, Ziqi and Jia, Haonan and Li, Lijun and Qian, Chen and Xiong, Yuan and Yan, Wenting and Shao, Jing},
+  journal={arXiv preprint arXiv:2603.28618},
   year={2026}
 }
 ```

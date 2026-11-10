@@ -16,7 +16,7 @@ from .model import Qwen3VLChat
 
 
 def _log_prompt_record(record: Dict[str, Any]) -> None:
-    """Append a JSON line to LOG_PROMPT_FILE if set (best-effort)."""
+    """Append a JSON line to LOG_PROMPT_FILE if set."""
 
     log_path = os.getenv("LOG_PROMPT_FILE")
     if not log_path:
@@ -200,7 +200,6 @@ class Qwen3VLObserverSolver(BaseModel):
             self.observer_model = Qwen3VLChat(**observer)
             self.solver_model = Qwen3VLChat(**solver)
 
-        # Best-effort cap for batch inference (used by the inference loop).
         if getattr(self, 'use_vllm', False):
             obs_mns = getattr(self.observer_model, 'max_num_seqs', None)
             sol_mns = getattr(self.solver_model, 'max_num_seqs', None)

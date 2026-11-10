@@ -250,7 +250,6 @@ class IDEFICS2(BaseModel):
             generated_ids[:, inputs['input_ids'].size(1):], skip_special_tokens=True
         )[0]
         response = generated_text.strip()
-        # print(dataset, " | ", formatted_messages.replace("\n", "\\n"), " | ", response.replace("\n", "\\n"))
         return response
 
     def generate_inner(self, message, dataset=None):
@@ -305,5 +304,4 @@ class IDEFICS2(BaseModel):
             generated_ids[:, inputs['input_ids'].size(1):], skip_special_tokens=True
         )[0]
         response = generated_text.strip()
-        # print(dataset, " | ", formatted_messages.replace("\n", "\\n"), " | ", response.replace("\n", "\\n"))
         return response

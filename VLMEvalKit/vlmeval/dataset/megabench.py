@@ -41,7 +41,6 @@ class MEGABench(VideoBaseDataset):
         num_demo_videos += count_videos(line['example_media'])
         num_query_videos += count_videos(line['query_media'])
 
-        # print("num_query_videos, num_demo_videos:", num_query_videos, num_demo_videos)
 
         if hasattr(self, 'max_num_frames') and self.max_num_frames:
             if num_demo_videos > 0:
@@ -70,7 +69,6 @@ class MEGABench(VideoBaseDataset):
             demo_video_frames = 2
             query_video_frames = 8
 
-        # print("demo_video_frames, query_video_frames:", demo_video_frames, query_video_frames)
         return demo_video_frames, query_video_frames
 
     def is_video_file(self, file_path):
@@ -265,7 +263,6 @@ class MEGABench(VideoBaseDataset):
                                     image = image.convert("RGB")
                                 image.save(tmp_path, "JPEG")
                                 shutil.move(tmp_path, rgb_path)  # 原子性重命名
-                                # print(f'Turn RGBA image into RGB mode, stored to {rgb_path}')
 
                                 # 刷新文件系统缓存，确保文件完全写入
                                 with open(rgb_path, 'rb') as f:
@@ -301,7 +298,6 @@ class MEGABench(VideoBaseDataset):
                                     image = image.convert("RGB")
                                 image.save(tmp_path, "JPEG")
                                 shutil.move(tmp_path, resize_path)  # 原子性重命名
-                                # print(f'Resized image, stored to {resize_path}')
 
                                 # 刷新文件系统缓存，确保文件完全写入
                                 with open(resize_path, 'rb') as f:

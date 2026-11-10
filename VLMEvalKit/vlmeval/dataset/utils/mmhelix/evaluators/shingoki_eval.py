@@ -306,7 +306,6 @@ class ShingokiEvaluator(BaseEvaluator):
         Returns:
             True if the answer is correct according to game rules, False otherwise
         """
-        # Initialize debug information for detailed error tracking
         debug_info = {"errors": [], "warnings": []}
 
         try:
@@ -460,7 +459,6 @@ class ShingokiEvaluator(BaseEvaluator):
         # Rule 4: Validate circle constraints (white/black circle rules and values)
         circle_validation_result = self._validate_all_circle_constraints(segments, circles, debug_info)
         if not circle_validation_result:
-            # Detailed errors are already added to debug_info in _validate_all_circle_constraints
             return False
 
         return True

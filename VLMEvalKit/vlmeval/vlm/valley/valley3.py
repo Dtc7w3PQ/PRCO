@@ -301,7 +301,6 @@ class Valley3Chat(BaseModel):
         return message
 
     def post_process(self, generation_text, dataset=None):
-        # print(f">>> RAW RESPONSE:\n{generation_text}")
         if dataset.startswith("MMVet"):
             generation_text += "(Please only output the final score.)"
             return generation_text
@@ -334,7 +333,6 @@ class Valley3Chat(BaseModel):
 
     def generate_inner(self, message, dataset=None):
         # Construct messages and images
-        # print(f">>> ORIGIN_MSG: {message}")
         messages = []
         text, images = '', []
         for item in message:
@@ -361,10 +359,6 @@ class Valley3Chat(BaseModel):
         messages.append({"role": 'user', "content": text})
 
         min_pixels, max_pixels = self.get_pixels_limit(dataset)
-        # print(f">>> min_pixels: {min_pixels}, max_pixels: {max_pixels}")
-        # print(f">>> MSG: {messages}")
-        # print(f">>> IMAGES: {images}")
-        # print(f">>> ENABLE_THINKING: {self._use_gthinker_thinking}")
         data_dict = self.processor(
             {
                 "conversations": messages,
@@ -387,7 +381,6 @@ class Valley3Chat(BaseModel):
             else:
                 images = [img.to(dtype=self.torch_dtype, device=self.device) for img in data_dict["images"]]
 
-            # print(f'pixel_values.shape: {data_dict["pixel_values"].shape}')
 
             output_ids = self.model.generate(
                 input_ids=data_dict["input_ids"].to(self.device),
@@ -406,7 +399,6 @@ class Valley3Chat(BaseModel):
         # sequences = output_ids.sequences.clone()
         # sequences[sequences < 0] = 0
         # full_seq = self.processor.batch_decode(sequences)[0]
-        # print(f">>> FULL_SEQ: {full_seq}")
 
         generation_text = self.processor.batch_decode(output_ids.sequences[:, input_token_len:])[0]
         generation_text = generation_text.replace("<|im_end|>", "")
@@ -414,5 +406,4 @@ class Valley3Chat(BaseModel):
         # Postprocess
         generation_text = self.post_process(generation_text, dataset)
 
-        # print(f">>> POST_PROCESS: {generation_text}")
         return generation_text

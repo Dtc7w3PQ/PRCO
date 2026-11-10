@@ -683,12 +683,10 @@ class OvisU1(BaseModel):
         # build query
         images = [x['value'] for x in message if x['type'] == 'image']
         texts = [x['value'] for x in message if x['type'] == 'text']
-        # print(f"=============={DATASET_MODALITY(dataset)}============")
         if DATASET_MODALITY(dataset) == 'VIDEO':  # video inputs
             chunks = [self.image_placeholder for x in message if x['type'] != 'text']
             chunks += [x['value'].strip() for x in message if x['type'] == 'text' and x['value'] != '']
             query = '\n'.join(chunks)
-            # print(query, chunks)
         elif len(images) == 0:  # text-only inputs
             query = '\n'.join(texts)
         elif len(images) == 1 and len(texts) == 1:  # single-image inputs

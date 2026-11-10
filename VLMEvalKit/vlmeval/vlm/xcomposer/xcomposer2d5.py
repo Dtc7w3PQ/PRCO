@@ -157,7 +157,6 @@ can understand and communicate fluently in the language chosen by the user such 
 def model_gen(model, text, images, need_bos=True, padding=False, beams=3, max_token=2048, video_input=False):
     embeds = []
     im_mask = []
-    # print(text)
 
     im_idx = 0
     sub_q = text.split('<IM_POS>')
@@ -180,7 +179,6 @@ def model_gen(model, text, images, need_bos=True, padding=False, beams=3, max_to
                 else:
                     image = HD_transform(
                         image, im_num=model.hd_num, id_scale=model.id_scale)
-            # print(image.size)
             image = model.vis_processor(image).unsqueeze(0).to(model.device)
             image_embeds = model.encode_img(image)
             im_idx += 1
@@ -202,7 +200,6 @@ def model_gen(model, text, images, need_bos=True, padding=False, beams=3, max_to
         output_token = output_token[1:]
     output_text = model.tokenizer.decode(output_token, add_special_tokens=False)
     output_text = output_text.split('[UNUSED_TOKEN_145]')[0].strip().split('<|im_end|>')[0].strip().split('The answer is')[-1].strip()  # noqa
-    # print(output_text)
     return output_text
 
 

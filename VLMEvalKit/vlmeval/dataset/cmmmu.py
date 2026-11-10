@@ -299,7 +299,6 @@ class CMMMU(ImageBaseDataset):
                         if isinstance(pred, str):  # if it's a string, then find if ans in the pred_i
                             for norm_ans in norm_answers:
                                 # only see if the string answer in the string pred
-                                # print(norm_ans, pred)
                                 if isinstance(norm_ans, str) and norm_ans in pred:
                                     correct_count += 1
                                     correct_category[line['category']][1] += 1

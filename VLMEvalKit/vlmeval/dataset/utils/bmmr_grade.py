@@ -434,7 +434,6 @@ def format_intervals(prediction):
 # def _test_math_equal():
 #     ref = "6,-2"
 #     pred = "6"
-#     print(math_equal(ref, pred))
 
 def _test_math_equal():
     pi = math.pi
@@ -463,7 +462,6 @@ def _test_math_equal():
 #     ref = "\\begin{pmatrix}0&1\\1&0\\end{pmatrix}"
 #     # ref=ref.split()[1:-1:2]
 #     pred = [[0,1], [1,0]]
-#     print(math_equal(pred, ref))
 
 
 if __name__ == "__main__":

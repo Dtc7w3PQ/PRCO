@@ -122,7 +122,6 @@ def evaluate_calculate_metrics(merged_2steps, merged_3steps):
         ((merged_3steps['joker_1'] == True) & (merged_3steps['joker_2'] == True) & (merged_3steps['joker_3'] == True))
         & (merged_3steps['joker_multi'] == True)
     ]
-    # metrics.to_csv("/Users/mac/Desktop/测试结果/error_anal/csv/gpt4o-0626.csv", index = False)
     return metrics
 
 
@@ -215,7 +214,6 @@ def wemath_evaluate_models(output_json, main_results_csv_path=None):
         ]
     )
 
-    # print(f"Evaluating model: {model_name}, JSON path: {output_json}")
     data = load_and_process_data(output_json)
     data_2steps = data[data['key'].str.contains('2steps')]
     data_3steps = data[data['key'].str.contains('3steps')]
@@ -335,7 +333,6 @@ def wemath_accuracy(output_json, main_results_csv_path=None):
         ]
     )
 
-    # print(f"Evaluating model: {model_name}, JSON path: {output_json}")
     data = load_and_process_data(output_json)
     data_2steps = data[data['key'].str.contains('2steps')]
     data_3steps = data[data['key'].str.contains('3steps')]

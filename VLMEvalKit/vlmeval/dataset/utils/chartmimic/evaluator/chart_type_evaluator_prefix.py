@@ -1,6 +1,5 @@
 import os
 import sys
-# sys.path.insert(0, os.environ['PROJECT_PATH'])
 if os.environ["VLMEVAL_CHARTMIMIC_UTILS_PATH"] not in sys.path:
     sys.path.insert(0, os.environ["VLMEVAL_CHARTMIMIC_UTILS_PATH"])
 
@@ -22,7 +21,6 @@ warnings.filterwarnings("ignore", category=UserWarning)
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", category=FutureWarning)
 
-# sys.path.insert(0, os.environ['PROJECT_PATH'])
 
 called_functions = {}
 in_decorator = False

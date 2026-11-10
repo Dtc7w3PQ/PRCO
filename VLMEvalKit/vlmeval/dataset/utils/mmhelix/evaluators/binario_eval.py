@@ -665,7 +665,6 @@ class BinarioEvaluator(BaseEvaluator):
             return self._validate_binairo_rules(predicted_answer)
 
         except Exception:
-            # Log the exception for debugging if needed
             return False
 
     def _normalize_initial_state(self, initial_state: List[List[Any]]) -> List[List[Any]]:

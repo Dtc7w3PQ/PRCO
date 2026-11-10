@@ -76,7 +76,6 @@ def textblock2unicode(text):
     for match in inline_matches:
         position = [match.start(), match.end()]
         content = match.group(1) if match.group(1) is not None else match.group(2)
-        # print('-------- content-------', content)
         # Remove escape characters \
         clean_content = re.sub(r'\\([\\_&%^])', '', content)
 
@@ -314,7 +313,6 @@ def textblock_with_norm_formula(text):
     for match in inline_matches:
         position = [match.start(), match.end()]
         content = match.group(1) if match.group(1) is not None else match.group(2)
-        # print('-------- content-------', content)
 
         norm_content = normalized_formula(content)
         removal_positions.append((position[0], position[1], norm_content))
@@ -372,13 +370,10 @@ def inline_filter_unicode(text):
         text = str(text)
 
     # Replace inline formula boundary markers
-    #print('--------text-------',text)
     placeholder = '__INLINE_FORMULA_BOUNDARY__'
     text_copy = text.replace('$', placeholder).replace('\\(', placeholder).replace('\\)', placeholder)
-    #print('--------text_copy-------',text_copy)
     # Convert LaTeX content to Unicode representation
     text_copy = LatexNodes2Text().latex_to_text(text_copy)
-    #print('--------text_copy---unicode----',text_copy)
     # Restore boundary markers
     text_copy = text_copy.replace(placeholder, '$')
 
@@ -420,7 +415,6 @@ def inline_filter(text):
     for match in inline_matches:
         position = [match.start(), match.end()]
         content = match.group(1) if match.group(1) is not None else match.group(2)
-        # print('inline_content: ', content)
 
         # Remove escape characters \
         clean_content = re.sub(r'\\([\\_&%^])', '', content)
@@ -433,7 +427,6 @@ def inline_filter(text):
                 'content': match.group(0),
             })
             text = text.replace(match.group(0), '')
-            # print('-----Found inline formula: ', match.group(0))
         else:
             text = text.replace(match.group(0), content)
 

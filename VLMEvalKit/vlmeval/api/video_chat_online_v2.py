@@ -245,12 +245,10 @@ class VideoChatOnlineV2Wrapper(BaseAPI):
                                         for choice in chunk['choices']:
                                             if 'delta' in choice and 'content' in choice['delta']:
                                                 content = choice['delta']['content']
-                                                # print(content, end='', flush=True)
                                                 full_content += content
                                 except json.JSONDecodeError:
                                     continue
 
-                    # print('流式输出内容：', full_content)
 
                     return 0,full_content,'Succeeded! '
 

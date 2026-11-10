@@ -204,7 +204,6 @@ def PhyX_auxeval(model, line):
             log += f'Try {i}: answer and prediction are {gt_answer} and {prediction}, failed to compare.\n'
         else:
             log += 'Compared at semantic level. '
-            # print(res)
             if "1" in res or 1 == res:
                 log += "Semantic equal via LLM."
                 return dict(log=log, res=1, extracted=prediction)
